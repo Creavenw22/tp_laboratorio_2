@@ -22,8 +22,9 @@ namespace MiCalculadora
                 this.cmbOperador.Items.Add(operador);
             }
             this.cmbOperador.Items.Add("");
+            this.cmbOperador.DropDownStyle = ComboBoxStyle.DropDownList;
             this.cmbOperador.SelectedItem = ("+");
-            lblResultado.Text = "";
+            label1.Text = "";
             btnConvertirABinario.Enabled = false;
             btnConvertirADecimal.Enabled = false;
         }
@@ -53,7 +54,7 @@ namespace MiCalculadora
             {
                 cmbOperador.Text = "+";
             }
-            lblResultado.Text = resultado.ToString();
+            label1.Text = resultado.ToString();
             btnConvertirABinario.Enabled = true;
             btnConvertirADecimal.Enabled = true;
         }
@@ -80,8 +81,8 @@ namespace MiCalculadora
 
         private void btnConvertirABinario_Click(object sender, EventArgs e)
         {
-            lblResultado.Text = Numero.DecimalBinario(lblResultado.Text);
-            if (lblResultado.Text != "Valor invalido")
+            label1.Text = Numero.DecimalBinario(label1.Text);
+            if (label1.Text != "Valor invalido")
             {
                 btnConvertirABinario.Enabled = false;
             }
@@ -89,7 +90,7 @@ namespace MiCalculadora
 
         private void btnConvertirADecimal_Click(object sender, EventArgs e)
         {
-            lblResultado.Text = Numero.BinarioDecimal(lblResultado.Text);
+            label1.Text = Numero.BinarioDecimal(label1.Text);
             btnConvertirABinario.Enabled = true;
         }
 
@@ -98,6 +99,19 @@ namespace MiCalculadora
 
         }
 
-        
+        private void lblResultado_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
