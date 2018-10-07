@@ -9,38 +9,43 @@ namespace Entidades_2018
     /// <summary>
     /// No podrá tener clases heredadas.
     /// </summary>
-    public class Changuito
+    public sealed class Changuito
     {
+        #region Atributos
         List<Producto> productos;
         int espacioDisponible;
+        #endregion
+
+        #region Enumerado
         public enum ETipo
         {
             Dulce, Leche, Snacks, Todos
         }
+        #endregion
 
-        #region "Constructores"
+        #region Constructores
         private Changuito()
         {
             this.productos = new List<Producto>();
         }
-        public Changuito(int espacioDisponible)
+        public Changuito(int espacioDisponible) : this ()
         {
             this.espacioDisponible = espacioDisponible;
         }
         #endregion
 
-        #region "Sobrecargas"
+        #region Sobrecargas
         /// <summary>
         /// Muestro el Changuito y TODOS los Productos
         /// </summary>
         /// <returns></returns>
-        public string ToString()
+        public override string ToString()
         {
             return Changuito.Mostrar(this, ETipo.Todos);
         }
         #endregion
 
-        #region "Métodos"
+        #region Métodos
 
         /// <summary>
         /// Expone los datos del elemento y su lista (incluidas sus herencias)
@@ -49,7 +54,7 @@ namespace Entidades_2018
         /// <param name="c">Elemento a exponer</param>
         /// <param name="ETipo">Tipos de ítems de la lista a mostrar</param>
         /// <returns></returns>
-        public string Mostrar(Changuito c, ETipo tipo)
+        public static string Mostrar(Changuito c, ETipo tipo)
         {
             StringBuilder sb = new StringBuilder();
 
@@ -59,26 +64,47 @@ namespace Entidades_2018
             {
                 switch (tipo)
                 {
-                    case ETipo.Snacks:
-                        sb.AppendLine(v.Mostrar());
-                        break;
                     case ETipo.Dulce:
-                        sb.AppendLine(v.Mostrar());
+
+                        if (v is Dulce)
+                        {
+                            sb.AppendLine(v.Mostrar());
+                            break;
+                        }
+
                         break;
-                    case ETipo.Leche:
-                        sb.AppendLine(v.Mostrar());
+
+                    case Changuito.ETipo.Leche:
+
+                        if (v is Leche)
+                        {
+                            sb.AppendLine(v.Mostrar());
+                            break;
+                        }
                         break;
+
+                    case Changuito.ETipo.Snacks:
+
+                        if (v is Snacks)
+                        {
+                            sb.AppendLine(v.Mostrar());
+                            break;
+                        }
+                        break;
+
                     default:
+
                         sb.AppendLine(v.Mostrar());
+
                         break;
-                }
+            }
             }
 
-            return sb;
+            return sb.ToString();
         }
         #endregion
-
-        #region "Operadores"
+    
+        #region Operadores
         /// <summary>
         /// Agregará un elemento a la lista
         /// </summary>
@@ -87,12 +113,20 @@ namespace Entidades_2018
         /// <returns></returns>
         public static Changuito operator +(Changuito c, Producto p)
         {
-            foreach (Producto v in c)
-            {
-                if (v == p)
-                    return c;
-            }
 
+            if (c.productos.Count >= c.espacioDisponible)
+                {
+                return c;
+                }
+
+            foreach (Producto v in c.productos)
+                {
+                    if (v == p)
+                    {
+                    return c;
+                    }
+                }
+            
             c.productos.Add(p);
             return c;
         }
@@ -104,10 +138,11 @@ namespace Entidades_2018
         /// <returns></returns>
         public static Changuito operator -(Changuito c, Producto p)
         {
-            foreach (Producto v in c)
+            foreach (Producto v in c.productos)
             {
                 if (v == p)
                 {
+                    c.productos.Remove(v);
                     break;
                 }
             }
