@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // La información general de un ensamblado se controla mediante el siguiente 
 // conjunto de atributos. Cambie estos valores de atributo para modificar la información
 // asociada con un ensamblado.
-[assembly: AssemblyTitle("Bustamante.Francisco.2A.TP3")]
+[assembly: AssemblyTitle("Archivos")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Bustamante.Francisco.2A.TP3")]
+[assembly: AssemblyProduct("Archivos")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // El siguiente GUID sirve como id. de typelib si este proyecto se expone a COM.
-[assembly: Guid("8383480e-919c-4129-ad18-49c72c905ad3")]
+[assembly: Guid("15d431aa-917b-4d1b-a5c0-bdba7a327d0f")]
 
 // La información de versión de un ensamblado consta de los cuatro valores siguientes:
 //
